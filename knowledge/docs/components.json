@@ -1,0 +1,146 @@
+[
+  {
+    "type": "component_doc",
+    "name": "TextInput",
+    "description": "Single-line text field for user input",
+    "properties": {
+      "type": "TextInput",
+      "id": "string — unique within screen",
+      "label": "string — visible label (required)",
+      "required": "boolean — whether the field is required",
+      "input-type": "text | email | phone | number | password"
+    },
+    "rules": [
+      "id must be unique across all screens",
+      "label is required",
+      "input-type defaults to text"
+    ]
+  },
+  {
+    "type": "component_doc",
+    "name": "TextArea",
+    "description": "Multi-line text input",
+    "properties": {
+      "type": "TextArea",
+      "id": "string — unique",
+      "label": "string (required)",
+      "required": "boolean"
+    },
+    "rules": [
+      "id must be unique",
+      "label is required"
+    ]
+  },
+  {
+    "type": "component_doc",
+    "name": "TextHeading",
+    "description": "Bold heading text displayed on screen",
+    "properties": {
+      "type": "TextHeading",
+      "text": "string — the heading content (required)"
+    },
+    "rules": [
+      "text is required",
+      "no id needed"
+    ]
+  },
+  {
+    "type": "component_doc",
+    "name": "TextSubheading",
+    "description": "Smaller subheading text",
+    "properties": {
+      "type": "TextSubheading",
+      "text": "string (required)"
+    },
+    "rules": ["text is required"]
+  },
+  {
+    "type": "component_doc",
+    "name": "TextBody",
+    "description": "Regular paragraph text",
+    "properties": {
+      "type": "TextBody",
+      "text": "string (required)"
+    },
+    "rules": ["text is required"]
+  },
+  {
+    "type": "component_doc",
+    "name": "RadioButtonsGroup",
+    "description": "Single-choice selection from a list of options",
+    "properties": {
+      "type": "RadioButtonsGroup",
+      "id": "string — unique",
+      "label": "string (required)",
+      "required": "boolean",
+      "data-source": "array of { id: string, title: string }"
+    },
+    "rules": [
+      "data-source is required and must have at least 2 options",
+      "each option id must be unique within the group"
+    ]
+  },
+  {
+    "type": "component_doc",
+    "name": "CheckboxGroup",
+    "description": "Multi-choice selection",
+    "properties": {
+      "type": "CheckboxGroup",
+      "id": "string — unique",
+      "label": "string (required)",
+      "required": "boolean",
+      "data-source": "array of { id: string, title: string }"
+    },
+    "rules": [
+      "data-source is required",
+      "each option id must be unique"
+    ]
+  },
+  {
+    "type": "component_doc",
+    "name": "Dropdown",
+    "description": "Dropdown select list",
+    "properties": {
+      "type": "Dropdown",
+      "id": "string — unique",
+      "label": "string (required)",
+      "required": "boolean",
+      "data-source": "array of { id: string, title: string }"
+    },
+    "rules": [
+      "data-source is required",
+      "each option id must be unique"
+    ]
+  },
+  {
+    "type": "component_doc",
+    "name": "Footer",
+    "description": "Action button at bottom of screen (navigate or submit)",
+    "properties": {
+      "type": "Footer",
+      "label": "string — button text (required)",
+      "on-click-action": {
+        "name": "navigate | complete",
+        "next": { "type": "screen", "name": "SCREEN_ID" },
+        "payload": "object — data to pass forward"
+      }
+    },
+    "rules": [
+      "Every screen should have exactly one Footer",
+      "Use 'navigate' to go to another screen",
+      "Use 'complete' on the terminal screen to submit the flow"
+    ]
+  },
+  {
+    "type": "component_doc",
+    "name": "DatePicker",
+    "description": "Date selection widget",
+    "properties": {
+      "type": "DatePicker",
+      "id": "string — unique",
+      "label": "string (required)",
+      "required": "boolean"
+    },
+    "rules": ["id and label are required"]
+  }
+]

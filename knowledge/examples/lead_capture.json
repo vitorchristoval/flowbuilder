@@ -1,0 +1,81 @@
+{
+  "version": "7.2",
+  "screens": [
+    {
+      "id": "LEAD_FORM",
+      "title": "Get in Touch",
+      "data": {},
+      "terminal": false,
+      "layout": {
+        "type": "SingleColumnLayout",
+        "children": [
+          {
+            "type": "Form",
+            "name": "flow_path",
+            "children": [
+              { "type": "TextHeading", "text": "We'd love to hear from you!" },
+              { "type": "TextInput", "name": "full_name", "label": "Your Name", "required": true, "input-type": "text" },
+              { "type": "TextInput", "name": "email", "label": "Email Address", "required": true, "input-type": "email" },
+              {
+                "type": "Footer",
+                "label": "Next",
+                "on-click-action": {
+                  "name": "navigate",
+                  "next": { "type": "screen", "name": "INTEREST" },
+                  "payload": {
+                    "full_name": "${form.full_name}",
+                    "email": "${form.email}"
+                  }
+                }
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "INTEREST",
+      "title": "Your Interest",
+      "data": {
+        "full_name": { "type": "string", "__example__": "Jane Doe" },
+        "email": { "type": "string", "__example__": "jane@example.com" }
+      },
+      "terminal": true,
+      "layout": {
+        "type": "SingleColumnLayout",
+        "children": [
+          {
+            "type": "Form",
+            "name": "flow_path",
+            "children": [
+              { "type": "TextSubheading", "text": "What are you interested in?" },
+              {
+                "type": "CheckboxGroup",
+                "name": "interests",
+                "label": "Select all that apply",
+                "required": true,
+                "data-source": [
+                  { "id": "pricing", "title": "Pricing information" },
+                  { "id": "demo", "title": "Product demo" },
+                  { "id": "support", "title": "Technical support" }
+                ]
+              },
+              {
+                "type": "Footer",
+                "label": "Submit",
+                "on-click-action": {
+                  "name": "complete",
+                  "payload": {
+                    "full_name": "${data.full_name}",
+                    "email": "${data.email}",
+                    "interests": "${form.interests}"
+                  }
+                }
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ]
+}

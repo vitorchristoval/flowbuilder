@@ -1,0 +1,76 @@
+{
+  "version": "7.2",
+  "screens": [
+    {
+      "id": "ISSUE_TYPE",
+      "title": "Support Request",
+      "data": {},
+      "terminal": false,
+      "layout": {
+        "type": "SingleColumnLayout",
+        "children": [
+          {
+            "type": "Form",
+            "name": "flow_path",
+            "children": [
+              { "type": "TextHeading", "text": "How can we help?" },
+              {
+                "type": "RadioButtonsGroup",
+                "name": "issue_type",
+                "label": "Select issue type",
+                "required": true,
+                "data-source": [
+                  { "id": "billing", "title": "Billing & Payments" },
+                  { "id": "technical", "title": "Technical Issue" },
+                  { "id": "account", "title": "Account Management" },
+                  { "id": "other", "title": "Other" }
+                ]
+              },
+              {
+                "type": "Footer",
+                "label": "Continue",
+                "on-click-action": {
+                  "name": "navigate",
+                  "next": { "type": "screen", "name": "ISSUE_DETAIL" },
+                  "payload": { "issue_type": "${form.issue_type}" }
+                }
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "ISSUE_DETAIL",
+      "title": "Describe Your Issue",
+      "data": {
+        "issue_type": { "type": "string", "__example__": "technical" }
+      },
+      "terminal": true,
+      "layout": {
+        "type": "SingleColumnLayout",
+        "children": [
+          {
+            "type": "Form",
+            "name": "flow_path",
+            "children": [
+              { "type": "TextSubheading", "text": "Tell us more so we can help faster." },
+              { "type": "TextArea", "name": "description", "label": "Describe the issue", "required": true },
+              {
+                "type": "Footer",
+                "label": "Submit",
+                "on-click-action": {
+                  "name": "complete",
+                  "payload": {
+                    "issue_type": "${data.issue_type}",
+                    "description": "${form.description}"
+                  }
+                }
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ]
+}
